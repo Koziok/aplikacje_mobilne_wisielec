@@ -22,7 +22,7 @@ class DatabaseOrganiser(context : Context) : SQLiteOpenHelper(context, DB_NAME, 
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuery = ("CREATE TABLE $TAB_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_LOGIN VARCHAR(50), $COL_PASSWORD VARCHAR(50), $COL_EMAIL VARCHAR(50), $COL_PHONE VARCHAR(12), $COL_SCORE INTEGER)")
+        val createTableQuery = ("CREATE TABLE $TAB_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_LOGIN VARCHAR(50), $COL_PASSWORD VARCHAR(50), $COL_EMAIL VARCHAR(50), $COL_PHONE VARCHAR(50), $COL_SCORE INTEGER)")
         db!!.execSQL(createTableQuery)
     }
 
@@ -73,5 +73,7 @@ class DatabaseOrganiser(context : Context) : SQLiteOpenHelper(context, DB_NAME, 
         }
         db.close()
     }
+
+
 
 }

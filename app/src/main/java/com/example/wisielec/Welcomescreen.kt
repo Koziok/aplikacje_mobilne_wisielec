@@ -14,12 +14,14 @@ class Welcomescreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.welcome_screen)
 
-        image = findViewById(R.id.wisielec_img);
-        animateImage()
+
+            image = findViewById(R.id.wisielec_img);
+            animateImage()
 
         val thread = Thread(){
             run{
                 Thread.sleep(5000)
+
             }
             runOnUiThread(){
                 val intent = Intent(this, MainActivity::class.java)
