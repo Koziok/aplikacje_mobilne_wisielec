@@ -33,6 +33,10 @@
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".Rate"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

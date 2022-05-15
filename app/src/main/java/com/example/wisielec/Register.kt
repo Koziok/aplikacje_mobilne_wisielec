@@ -36,19 +36,19 @@ class Register : AppCompatActivity()
             var score = 0
 
             if (TextUtils.isEmpty(loginData) || TextUtils.isEmpty(passwordData) || TextUtils.isEmpty(phoneData) || TextUtils.isEmpty(emailData)) {
-                val toast = Toast.makeText(this, "Żadne pole nie może być puste!", Toast.LENGTH_LONG)
+                val toast = Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_LONG)
                 toast.show()
             }
             else
             {
                 val dbReturn = database.register(loginData, passwordData, phoneData, emailData, score)
                 if(dbReturn!=-1){
-                    val toast = Toast.makeText(this, "Zarejestrowano pomyślnie!", Toast.LENGTH_LONG)
+                    val toast = Toast.makeText(this, "Registered successfully!", Toast.LENGTH_LONG)
                     toast.show()
                 }
                 else
                 {
-                    val toast = Toast.makeText(this, "Konto z takim loginem już istnieje!", Toast.LENGTH_LONG)
+                    val toast = Toast.makeText(this, "The account with such login already exists!", Toast.LENGTH_LONG)
                     toast.show()
                 }
             }
