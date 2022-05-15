@@ -19,6 +19,10 @@ class Rate : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.rate)
 
+        val database = DatabaseOrganiser(applicationContext)
+
+        val login = intent.getStringExtra("Login").toString()
+
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS), 111)
@@ -34,9 +38,21 @@ class Rate : AppCompatActivity()
             {
                 if (ratingData.toIntOrNull()!! >= 0 && ratingData.toIntOrNull()!! <= 5)
                 {
-                    Toast.makeText(this, "Your rating " + ratingData + "/5 was sent to creator!", Toast.LENGTH_LONG).show()
+
 
                     sendMsg(ratingData)
+                    if (database.setRating(login) == -1)
+                    {
+                        Toast.makeText(this, "Your rating " + ratingData + "/5 was sent to creator!", Toast.LENGTH_LONG).show()
+                    }
+                    else
+                    {
+                        Toast.makeText(this, "Message not sent!", Toast.LENGTH_LONG).show()
+                    }
+                    val intent = Intent(this, Game::class.java)
+                    intent.putExtra("Login", login)
+                    startActivity(intent)
+                    finish()
                 }
                 else
                 {
@@ -48,9 +64,7 @@ class Rate : AppCompatActivity()
                 Toast.makeText(this, "Fill in the grade field!", Toast.LENGTH_LONG).show()
             }
 
-            val intent = Intent(this, Game::class.java)
-            startActivity(intent)
-            finish()
+
         }
 
 
@@ -68,7 +82,7 @@ class Rate : AppCompatActivity()
     private fun sendMsg(ratingData : String)
     {
         var sms = SmsManager.getDefault()
-        var messageText = ratingData
+        var messageText = "User score : " + ratingData
         sms.sendTextMessage("1223", "ME", messageText, null, null)
     }
 }

@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity()
                     val toast = Toast.makeText(this, "Logged in successfully!", Toast.LENGTH_LONG)
                     toast.show()
                     val intent = Intent(this, Game::class.java)
+                    intent.putExtra("Login", loginData)
                     startActivity(intent)
                 }
                 else

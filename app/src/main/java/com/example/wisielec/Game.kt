@@ -22,6 +22,10 @@ class Game : AppCompatActivity()
         val startNewGameButton = findViewById<Button>(R.id.newgame_button)
         val rateAppButton = findViewById<Button>(R.id.rateapp_button)
 
+        val login = intent.getStringExtra("Login").toString()
+
+        val database = DatabaseOrganiser(applicationContext)
+
         val randomWord = findViewById<TextView>(R.id.random_word)
         val usedLettersView = findViewById<TextView>(R.id.used_letters)
         val image = findViewById<ImageView>(R.id.hanger_image)
@@ -146,15 +150,25 @@ class Game : AppCompatActivity()
         startNewGameButton.setOnClickListener()
         {
             val intent = Intent(this, Game::class.java)
+            intent.putExtra("Login", login)
             startActivity(intent)
             finish()
         }
 
         rateAppButton.setOnClickListener()
         {
-            val intent = Intent(this, Rate::class.java)
-            startActivity(intent)
-            finish()
+            if (database.getRating(login) == 0)
+            {
+                val intent = Intent(this, Rate::class.java)
+                intent.putExtra("Login", login)
+                startActivity(intent)
+                finish()
+            }
+            else
+            {
+                Toast.makeText(this, "This user already submitted a rating!", Toast.LENGTH_LONG).show()
+            }
+
         }
     }
 }
