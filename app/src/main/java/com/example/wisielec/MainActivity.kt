@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity()
 
         val loginButton = findViewById<Button>(R.id.login_button)
         val registerButton = findViewById<Button>(R.id.register_button)
+        val tableScoreButton = findViewById<Button>(R.id.table_score_button)
 
         val loginInput = findViewById<EditText>(R.id.login_input)
         val passwordInput = findViewById<EditText>(R.id.password_input)
@@ -63,6 +64,12 @@ class MainActivity : AppCompatActivity()
         registerButton.setOnClickListener()
         {
             val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
+
+        tableScoreButton.setOnClickListener()
+        {
+            val intent = Intent(this, TableScore::class.java)
             startActivity(intent)
         }
 

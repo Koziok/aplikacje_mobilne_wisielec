@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/activity_main.xml" value="0.2994791666666667" />
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/game.xml" value="0.33" />
+        <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/listview_item.xml" value="0.2875905797101449" />
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/rate.xml" value="0.2695035460992908" />
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/register_screen.xml" value="0.31354166666666666" />
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/rotate.xml" value="0.1875" />
+        <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/table_scores.xml" value="0.2875905797101449" />
         <entry key="..\:/aplikacje_mobilne_wisielec/app/src/main/res/layout/welcome_screen.xml" value="0.31354166666666666" />
       </map>
     </option>

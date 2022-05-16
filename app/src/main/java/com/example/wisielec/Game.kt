@@ -25,6 +25,8 @@ class Game : AppCompatActivity()
         val login = intent.getStringExtra("Login").toString()
 
         val database = DatabaseOrganiser(applicationContext)
+        var currentScore = database.getScore(login)
+        println(currentScore)
 
         val randomWord = findViewById<TextView>(R.id.random_word)
         val usedLettersView = findViewById<TextView>(R.id.used_letters)
@@ -110,6 +112,8 @@ class Game : AppCompatActivity()
                         if (word == guessWord)
                         {
                             Toast.makeText(this, "You won! Congrats!", Toast.LENGTH_LONG).show()
+                            currentScore += 1
+                            database.insertScore(login, currentScore);
                         }
 
                         randomWord.text = guessWord

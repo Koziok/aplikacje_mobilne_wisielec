@@ -63,9 +63,9 @@ class DatabaseOrganiser(context : Context) : SQLiteOpenHelper(context, DB_NAME, 
                 val values = ContentValues()
                 values.put(COL_LOGIN, loginData)
                 values.put(COL_PASSWORD, passwordData)
-                values.put(COL_SCORE, phoneData)
-                values.put(COL_PHONE, emailData)
-                values.put(COL_EMAIL, score)
+                values.put(COL_SCORE, score)
+                values.put(COL_PHONE, phoneData)
+                values.put(COL_EMAIL, emailData)
                 values.put(COL_SENT_RATING, 0)
 
                 db.insert(TAB_NAME, null, values)
@@ -109,5 +109,54 @@ class DatabaseOrganiser(context : Context) : SQLiteOpenHelper(context, DB_NAME, 
         db.close()
     }
 
+    fun insertScore(loginData: String, points: Int): Int {
+        val db = this.writableDatabase
+        val query = "UPDATE $TAB_NAME SET $COL_SCORE = $points WHERE $COL_LOGIN=?"
+        db.rawQuery(query, arrayOf(loginData)).use {
+            if(it.moveToFirst())
+            {
+                return 0
+            }
+            else
+            {
+                return -1
+            }
+        }
+        db.close()
+    }
+
+    fun getScore(loginData: String): Int
+    {
+        val db = this.writableDatabase
+        val query = "SELECT $COL_SCORE FROM $TAB_NAME WHERE $COL_LOGIN=?"
+        db.rawQuery(query, arrayOf(loginData)).use {
+            if(it.moveToFirst())
+            {
+                return it.getInt(it.getColumnIndexOrThrow(COL_SCORE))
+            }
+            else
+            {
+                return -1
+            }
+        }
+        db.close()
+    }
+
+    fun getData(): Array<String> {
+        val db = this.writableDatabase
+        val dataArray = arrayOf<String>()
+        val list: MutableList<String> = dataArray.toMutableList()
+        var rs = db.rawQuery("SELECT * FROM $TAB_NAME ORDER BY $COL_SCORE DESC", null)
+        var checker = 1
+        while (rs.moveToNext())
+        {
+            list.add(checker.toString())
+            list.add(rs.getString(1))
+            list.add(rs.getString(5))
+            checker += 1
+
+        }
+        return list.toTypedArray()
+    }
 
 }
